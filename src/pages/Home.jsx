@@ -2,6 +2,7 @@ import { Suspense } from "react"
 import { Canvas } from "@react-three/fiber"
 import Loader from "../components/Loader"
 import Island from "../models/Island"
+import Sky from "../models/Sky"
 
 
 {/*   <div className="absolute top-28 left-0 right-0 z-10 flex items-center justify-center">
@@ -34,12 +35,16 @@ const Home = () => {
       >
         <Suspense fallback={<Loader />}>
           {/*Different light components to make the model look good */}
-          <directionalLight />
-          <ambientLight />
-          <pointLight />
-          <spotLight />
-          <hemisphereLight />
+          {/*Simulate sunlight: */}
+          <directionalLight position={[1, 1, 1]} intensity={1} />
+          {/*Illuminate all objects in the scene equally without casting shadows: */}
+          <ambientLight intensity={0.5} />
+          {/*Emit light from a single point in all different directions with <pointLight /> */}
+          {/*Emits light from one direction in the shape of a collon with <spotLight /> */}
+          <hemisphereLight skyColor="#b1e1ff" groundColor="#000000" intensity={1} />
 
+
+          <Sky />
           <Island
             position ={islandPosition}
             scale = {islandScale}
