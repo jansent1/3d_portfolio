@@ -15,6 +15,8 @@ const Home = () => {
 /*useState for island rotation:*/
 const [isRotating, setIsRotating] = useState(false)
 
+const [currentStage, setCurrentStage] = useState(1)
+
 /*Function to see the screensize and the adjust the 3d model to its size */
   const adjustIslandForScreenSize = () => {
     let screenScale = null;
@@ -71,6 +73,7 @@ const [isRotating, setIsRotating] = useState(false)
             rotation = {islandRotation}
             isRotating = {isRotating}
             setIsRotating = {setIsRotating}
+            setCurrentStage = {setCurrentStage}
           />
           <Plane
             isRotating = {isRotating}
