@@ -11,7 +11,7 @@ const Sky = ({ isRotating }) => {
   /*Make the sky move:*/ 
   useFrame((_, delta) => {
     if(isRotating){
-      skyref.current.rotation.y += 0.15 * delta;
+      skyref.current.rotation.y += 0.20 * delta;
     }
   })
 
