@@ -1,9 +1,15 @@
 import React from "react"
+import { Link } from "react-router-dom";
+import { arrow } from '../assets/icons';
 
 
 const InfoBox = ({ text, link, btnText }) => (
-    <div>
-        {text}
+    <div className="info-box">
+        <p className="font-medium sm:text-xl text-center">{text}</p>
+        <Link to={link} className="neo-brutalism-white neo-btn">
+           {btnText}
+           <img src={arrow} alt="arrow" className="w-4 h-4 object-contain" />
+        </Link>
     </div>
 )
 
@@ -17,13 +23,25 @@ const renderContent = {
         </h1>
     ),
     2: (
-        <h1>2</h1>
+        <InfoBox 
+            text="Worked on many different projects. Recently accomplished and credited Full Stack Developer"
+            link="/about"
+            btnText="Learn more"
+        />
     ),
     3: (
-        <h1>3</h1>
+        <InfoBox 
+            text="Led multiple projects to succes over the years. Curious about the impact?"
+            link="/projects"
+            btnText="Visit my portfolio"
+        />
     ),
     4: (
-        <h1>4</h1>
+        <InfoBox 
+            text="Need a project done or looking for a dev? I'm just a few keystrokes away."
+            link="/contact"
+            btnText="Let's talk"
+        />
     ),
   
     }
