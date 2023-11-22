@@ -22,6 +22,8 @@ const Island = ({isRotating, setIsRotating, setCurrentStage, ...props}) => {
   const rotationSpeed = useRef(0);
   const dampingFactor = 0.95;
 
+
+  /*Functions for rotation animation of the Island*/
   const handlePointerDown = (e) => {
     e.stopPropagation();
     e.preventDefault();
@@ -147,6 +149,8 @@ const Island = ({isRotating, setIsRotating, setCurrentStage, ...props}) => {
   }, [gl, handlePointerDown, handlePointerUp, handlePointerMove]);
 
   return (
+
+    /*a.group part is copied from an GH repo on advice of the auth. */
     <a.group ref={islandRef} {...props}>
       <mesh
         geometry={nodes.polySurface944_tree_body_0.geometry}
