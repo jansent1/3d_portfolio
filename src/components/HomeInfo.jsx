@@ -24,14 +24,14 @@ const renderContent = {
     ),
     2: (
         <InfoBox 
-            text="Worked on many different projects. Recently accomplished and credited Full Stack Developer"
+            text="Worked on many different projects. Recently accomplished and credited Full Stack Developer."
             link="/about"
             btnText="Learn more"
         />
     ),
     3: (
         <InfoBox 
-            text="Led multiple projects to succes over the years. Curious about the impact?"
+            text="I've led multiple projects to succes over the years. Curious about the impact?"
             link="/projects"
             btnText="Visit my portfolio"
         />
