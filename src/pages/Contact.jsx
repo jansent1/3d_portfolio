@@ -1,19 +1,37 @@
-import React, { useState } from "react"
+import React, { useState, useRef } from "react"
+import emailjs from '@emailjs/browser'
 
 
 const Contact = () => {
+  const formRef = useRef(null);
   const [form, setForm] = useState({ name: "", email: "", message: "" })
-  const handleChange = () => {};
+  const [isLoading, setIsLoading] = useState(false);
+
+  const handleChange = (e) => {
+    //Update all the properties in the form:
+    setForm({ ...form, [e.target.name]: e.target.value  })
+  };
+
+  //Get the key-pressed event:
+  const handleSubmit = (e) => {
+    e.preventDefault();
+    setIsLoading(true);
+    emailjs.sendForm(
+      
+    )
+  };
+
   const handleFocus = () => {};
   const handleBlur = () => {};
+  
 
   return (
-    <section className="relative flex lg:flex-row flex col max-container">
+    <section className="relative flex lg:flex-row flex-col max-container">
       <div className="flex-1 min-w-[50%] flex flex-col">
         <h1 className="head-text" >Get in touch</h1>
 
-        <form action="" className="w-full flex-col gap-7 mt-14 ">
-          <label className="text-black-500 font-semibold">
+        <form className="w-full flex flex-col gap-7 mt-14" onSubmit={handleSubmit}>
+          <label className="text-blue-500 font-semibold">
             Name
             <input 
               type="text"
@@ -27,7 +45,7 @@ const Contact = () => {
               onBlur={handleBlur}
           />
           </label>
-          <label className="text-black-500 font-semibold">
+          <label className="text-blue-500 font-semibold">
             Email
             <input 
               type="email"
@@ -41,21 +59,30 @@ const Contact = () => {
               onBlur={handleBlur}
           />
           </label>
-          <label className="text-black-500 font-semibold">
+          <label className="text-blue-500 font-semibold">
             Your Message
             <textarea 
               
               name="message"
-              className="input"
+              rows={4}
+              className="textarea"
               placeholder="Let me know how can help you!"
               required
-              value={form.name}
+              value={form.message}
               onChange={handleChange} 
               onFocus={handleFocus}
               onBlur={handleBlur}
           />
           </label>
-          
+          <button
+            type="submit"
+            className="btn"
+            disabled={isLoading}
+            onFocus={handleFocus}
+            onBlur={handleBlur}
+          >
+            {isLoading ? 'Sending....' : 'Send Message' }
+          </button>
         </form>
 
       </div>
