@@ -1,9 +1,10 @@
-import React, { useState, useRef } from "react"
 import emailjs from '@emailjs/browser'
+import React, { useState, useRef } from "react"
+
 
 
 const Contact = () => {
-  const formRef = useRef(null);
+  const formRef = useRef();
   const [form, setForm] = useState({ name: "", email: "", message: "" })
   const [isLoading, setIsLoading] = useState(false);
 
@@ -12,17 +13,38 @@ const Contact = () => {
     setForm({ ...form, [e.target.name]: e.target.value  })
   };
 
+  const handleFocus = () => {};
+  const handleBlur = () => {};
+
   //Get the key-pressed event:
   const handleSubmit = (e) => {
     e.preventDefault();
     setIsLoading(true);
-    emailjs.sendForm(
-      
-    )
+    emailjs.send(
+      import.meta.env.VITE_APP_EMAILJS_SERVICE_ID,
+      import.meta.env.VITE_APP_EMAILJS_TEMPLATE_ID,
+      { 
+        from_name: form.name,
+        to_name: "Teun",
+        from_email: form.email,
+        to_email: 'teunjansen91@gmail.com',
+        message: form.message
+       },
+       import.meta.env.VITE_APP_EMAILJS_PUBLIC_KEY
+    ).then(() => {
+      setIsLoading(false);
+      //TODO: show succes message
+      setForm({name: '', email: '', message: ''});
+
+    }).catch(() => {
+      setIsLoading(false);
+      console.log(error);
+      //TODO: Show error message
+    })
   };
 
-  const handleFocus = () => {};
-  const handleBlur = () => {};
+ 
+
   
 
   return (
